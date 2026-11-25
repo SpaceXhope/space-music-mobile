@@ -19,7 +19,7 @@ on:
       wait_seconds:
         description: "Seconds to wait before taking the screenshot"
         required: false
-        default: "25"
+        default: "60"
 
 permissions:
   contents: read

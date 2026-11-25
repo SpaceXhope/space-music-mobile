@@ -35,7 +35,8 @@
     "@types/react": "~19.3.0",
     "eslint-config-expo": "~58.0.4",
     "typescript": "~6.0.3",
-    "vitest": "^5.1.1"
+    "vitest": "^5.1.1",
+    "wrangler": "^4.168.0"
   },
   "scripts": {
     "start": "expo start",
@@ -46,7 +47,9 @@
     "typecheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit",
     "lint": "expo lint",
     "test": "vitest run",
-    "doctor": "npx expo-doctor"
+    "doctor": "npx expo-doctor",
+    "deploy": "npx expo export -p web && wrangler deploy",
+    "preview": "npx expo export -p web && wrangler dev"
   },
   "private": true
 }

@@ -28,8 +28,19 @@ import {
 } from "./authChallenge";
 import { PowCheckError, solvePowChallenge } from "./proofOfWork";
 
+/* On web the API is reached through the same-origin Worker bridge: the
+ * upstream rejects CORS preflight for the signed headers. Native builds keep
+ * the public endpoint. */
+const webApiBase =
+  typeof window !== "undefined" &&
+  /^https?:$/.test(window.location?.protocol || "")
+    ? `${window.location.origin}/api`
+    : "";
+
 export const API_BASE_URL = (
-  process.env.EXPO_PUBLIC_API_URL || "https://api.tryliner.fun"
+  process.env.EXPO_PUBLIC_API_URL ||
+  webApiBase ||
+  "https://api.tryliner.fun"
 ).replace(/\/+$/, "");
 
 const CLIENT_VERSION = "0.3.3-mobile";

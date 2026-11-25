@@ -75,7 +75,9 @@ jobs:
           open -a Simulator
 
       - name: Install app
-        run: xcrun simctl install booted SpaceMusic.app
+        run: |
+          plutil -insert EXDevMenuIsOnboardingFinished -bool YES SpaceMusic.app/Info.plist
+          xcrun simctl install booted SpaceMusic.app
 
       - name: Launch app
         if: ${{ !inputs.connect_dev_server }}

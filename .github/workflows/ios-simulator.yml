@@ -77,6 +77,8 @@ jobs:
       - name: Install app
         run: |
           plutil -insert EXDevMenuIsOnboardingFinished -bool YES SpaceMusic.app/Info.plist
+          plutil -insert EXDevMenuShowsAtLaunch -bool NO SpaceMusic.app/Info.plist
+          plutil -insert EXDevMenuShowFloatingActionButton -bool NO SpaceMusic.app/Info.plist
           xcrun simctl install booted SpaceMusic.app
 
       - name: Launch app

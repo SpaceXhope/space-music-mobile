@@ -93,6 +93,9 @@ jobs:
             sleep 2
           done
           cat expo-dev-server.log
+          xcrun simctl privacy booted grant local-network app.spacemusic.player || true
+          curl -sS -o /dev/null --max-time 180 -w "warmup=%{http_code} time=%{time_total}\n" http://localhost:8081/
+          sleep 10
           xcrun simctl launch booted app.spacemusic.player --initialUrl http://localhost:8081
 
       - name: Screenshot

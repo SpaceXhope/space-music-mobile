@@ -25,6 +25,14 @@
     "production": {
       "extends": "base",
       "autoIncrement": true
+    },
+    "sideload": {
+      "extends": "base",
+      "withoutCredentials": true,
+      "distribution": "internal",
+      "ios": {
+        "buildConfiguration": "Release"
+      }
     }
   }
 }

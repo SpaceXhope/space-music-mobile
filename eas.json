@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 27.11.0"
+    "version": ">= 27.11.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "base": {
@@ -22,7 +23,8 @@
       "distribution": "internal"
     },
     "production": {
-      "extends": "base"
+      "extends": "base",
+      "autoIncrement": true
     }
   }
 }

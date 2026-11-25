@@ -74,10 +74,12 @@ jobs:
           xcrun simctl bootstatus "$name" -b
           open -a Simulator
 
-      - name: Install and launch
-        run: |
-          xcrun simctl install booted SpaceMusic.app
-          xcrun simctl launch booted app.spacemusic.player
+      - name: Install app
+        run: xcrun simctl install booted SpaceMusic.app
+
+      - name: Launch app
+        if: ${{ !inputs.connect_dev_server }}
+        run: xcrun simctl launch booted app.spacemusic.player
 
       - name: Connect dev client to Expo
         if: ${{ inputs.connect_dev_server }}
@@ -91,8 +93,7 @@ jobs:
             sleep 2
           done
           cat expo-dev-server.log
-          ENC=$(node -e 'process.stdout.write(encodeURIComponent("http://localhost:8081"))')
-          xcrun simctl openurl booted "exp+space-music://expo-development-client/?url=$ENC"
+          xcrun simctl launch booted app.spacemusic.player --initialUrl http://localhost:8081
 
       - name: Screenshot
         env:

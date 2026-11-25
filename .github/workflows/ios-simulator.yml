@@ -81,8 +81,10 @@ jobs:
 
       - name: Connect dev client to Expo
         if: ${{ inputs.connect_dev_server }}
+        env:
+          CI: "1"
         run: |
-          npx expo start --dev-client --non-interactive --port 8081 > expo-dev-server.log 2>&1 &
+          npx expo start --dev-client --port 8081 > expo-dev-server.log 2>&1 &
           echo $! > expo-dev-server.pid
           for i in $(seq 1 30); do
             grep -q "Waiting on" expo-dev-server.log && break
